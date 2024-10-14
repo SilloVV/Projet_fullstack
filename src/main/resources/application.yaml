@@ -1,1 +1,18 @@
 spring.application.name=projet
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/covid-db  
+    username: postgres  
+    password: password 
+  jpa:
+    hibernate:
+      ddl-auto: create  
+    show-sql: true  # Affiche les requêtes SQL dans la console
+    database-platform: org.hibernate.dialect.PostgreSQLDialect  # Spécifie le dialecte de la base de données
+  sql.init.mode: always  # Exécute les scripts SQL de l'application à chaque démarrage
+
+# Si tu utilises Liquibase pour la gestion des migrations de schéma
+liquibase:
+  enabled: false  # Désactive Liquibase si tu ne l'utilises pas
+
