@@ -5,6 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 import java.time.LocalDate;
 
 
@@ -17,11 +20,23 @@ public class reservations {
 
     private int id_patient;
     private int id_centre;
+    private int id_employe;
+    
     private LocalDate jour;
     private String creneau;
     private Boolean is_validated;
 
-  
+    @ManyToOne
+    @JoinColumn(name = "id_centre")
+    private centres centre;
+
+    @ManyToOne
+    @JoinColumn(name = "id_patient", nullable = false)
+    private patients patient;
+
+    @ManyToOne
+    @JoinColumn(name = "id_employe", nullable = false)
+    private employes employe;
 
     public reservations(int id_patient, int id_centre, Boolean is_validated, LocalDate jour, String creneau) {
         this.id_patient = id_patient;
@@ -68,5 +83,12 @@ public class reservations {
     public void setIs_validated(Boolean is_validated) {
         this.is_validated = is_validated;
     }
- 
+    public int getId_employe() {
+        return id_employe;
+    }
+
+    public void setId_employe(int id_employe) {
+        this.id_employe = id_employe;
+    }
+
 }
