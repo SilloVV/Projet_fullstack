@@ -1,1 +1,15 @@
-spring.application.name=projet
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring
+    username: postgres
+    password: postgres
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate.ddl-auto: create
+  sql:
+    init:
+      mode: always
+
+
+
