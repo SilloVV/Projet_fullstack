@@ -17,22 +17,25 @@ import jakarta.persistence.OneToMany;
 public class centres {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
     private String nom;
     private String ville;
    
+    // Liens avec l'entité centre de vaccination
     @OneToMany(mappedBy = "centre", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<employes> employes;
 
     @OneToMany(mappedBy = "centre", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<reservations> reservations;
 
-
+    // constructeur
     public centres( String nom, String ville) {
         this.nom = nom;
         this.ville = ville;
     }
 
+    // getters and setters
     public int getId() {
         return id;
     }

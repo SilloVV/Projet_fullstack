@@ -18,6 +18,7 @@ import jakarta.persistence.OneToMany;
 @Entity
 @Table(name = "t_employes")
 public class employes {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String nom;
@@ -26,6 +27,7 @@ public class employes {
     private String role;
     private int telephone;
 
+    // Liens  avec employés et centres
     @ManyToOne
     @JoinColumn(name = "id_centre")
     private centres centre;
@@ -34,7 +36,7 @@ public class employes {
     private Set<reservations> reservations = new HashSet<>();
 
 
-
+    //constructeur
     public employes(  String nom, String prenom, int id_centre, String role, Boolean is_med, int telephone) {
         this.nom = nom;
         this.prenom = prenom;
@@ -43,6 +45,7 @@ public class employes {
         this.telephone = telephone;
     }
 
+    // getters and setters
     public String getNom() {
         return nom;
     }

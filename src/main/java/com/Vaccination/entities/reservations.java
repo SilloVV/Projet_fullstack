@@ -26,6 +26,7 @@ public class reservations {
     private String creneau;
     private Boolean is_validated;
 
+    //Liens
     @ManyToOne
     @JoinColumn(name = "id_centre")
     private centres centre;
@@ -38,6 +39,7 @@ public class reservations {
     @JoinColumn(name = "id_employe", nullable = false)
     private employes employe;
 
+    // Constructeurs
     public reservations(int id_patient, int id_centre, Boolean is_validated, LocalDate jour, String creneau) {
         this.id_patient = id_patient;
         this.id_centre = id_centre;
@@ -46,6 +48,7 @@ public class reservations {
         this.creneau = creneau;
     }
 
+    // getters and setters
     public int getId() {
         return id;
     }

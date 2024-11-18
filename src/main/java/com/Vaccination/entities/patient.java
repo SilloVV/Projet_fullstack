@@ -14,6 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "t_patients")
 public class patient {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -23,10 +24,11 @@ public class patient {
     private int telephone;
     private LocalDate date_naissance;
 
-     @OneToMany(mappedBy = "patient")
+    //Liens avec reservations
+    @OneToMany(mappedBy = "patient")
     private Set<reservations> reservations = new HashSet<>();
 
-
+    //Constructeurs
     public patient(String nom, String prenom, String mail, int telephone, LocalDate date_naissance) {
         this.nom = nom;
         this.prenom = prenom;
@@ -35,6 +37,7 @@ public class patient {
         this.date_naissance = date_naissance;
     }
 
+    // getters and setters
     public int getId() {
         return id;
     }
