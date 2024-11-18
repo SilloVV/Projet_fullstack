@@ -1,10 +1,19 @@
 package com.Vaccination.entities;
 
 import jakarta.persistence.Table;
+
+import java.util.HashSet;
+
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Table(name = "t_employes")
@@ -18,6 +27,15 @@ public class employes {
     private int id_centre;
     private String role;
     private int telephone;
+
+    @ManyToOne
+    @JoinColumn(name = "id_centre")
+    private centres centre;
+    
+    @OneToMany(mappedBy = "employes", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<reservations> reservations = new HashSet<>();
+
+
 
     public employes(  String nom, String prenom, int id_centre, String role, Boolean is_med, int telephone) {
         this.nom = nom;

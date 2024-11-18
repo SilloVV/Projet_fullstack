@@ -1,10 +1,16 @@
 package com.Vaccination.entities;
 
 import jakarta.persistence.Table;
+
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Table(name = "t_centres")
@@ -15,6 +21,13 @@ public class centres {
     private String nom;
     private String ville;
    
+    @OneToMany(mappedBy = "centre", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<employes> employes;
+
+    @OneToMany(mappedBy = "centre", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<reservations> reservations;
+
+
     public centres( String nom, String ville) {
         this.nom = nom;
         this.ville = ville;

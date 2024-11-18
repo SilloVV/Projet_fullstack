@@ -5,11 +5,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "t_patients")
-public class patients {
+public class patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -19,7 +23,11 @@ public class patients {
     private int telephone;
     private LocalDate date_naissance;
 
-    public patients(String nom, String prenom, String mail, int telephone, LocalDate date_naissance) {
+     @OneToMany(mappedBy = "patient")
+    private Set<reservations> reservations = new HashSet<>();
+
+
+    public patient(String nom, String prenom, String mail, int telephone, LocalDate date_naissance) {
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
