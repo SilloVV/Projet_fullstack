@@ -32,7 +32,7 @@ public class reservations {
 
     @ManyToOne
     @JoinColumn(name = "id_patient", nullable = false)
-    private patients patient;
+    private patient patient;
 
     @ManyToOne
     @JoinColumn(name = "id_employe", nullable = false)

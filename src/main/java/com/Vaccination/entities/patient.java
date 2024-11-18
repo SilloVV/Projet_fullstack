@@ -13,7 +13,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "t_patients")
-public class patients {
+public class patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -27,7 +27,7 @@ public class patients {
     private Set<reservations> reservations = new HashSet<>();
 
 
-    public patients(String nom, String prenom, String mail, int telephone, LocalDate date_naissance) {
+    public patient(String nom, String prenom, String mail, int telephone, LocalDate date_naissance) {
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
