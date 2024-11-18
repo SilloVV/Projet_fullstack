@@ -44,4 +44,7 @@ create table if not exists t_patients (
 
 );
 
+ALTER TABLE t_reservations ADD COLUMN id_employe BIGINT;
+
+
 
