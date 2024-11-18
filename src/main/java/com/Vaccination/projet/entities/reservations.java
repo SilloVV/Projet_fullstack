@@ -1,4 +1,4 @@
-package com.Vaccination.entities;
+package com.Vaccination.projet.entities;
 
 import jakarta.persistence.Table;
 import jakarta.persistence.Entity;
@@ -16,31 +16,27 @@ import java.time.LocalDate;
 public class reservations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    private int id_patient;
-    private int id_centre;
-    private int id_employe;
-    
+    private int id;    
     private LocalDate jour;
     private String creneau;
     private Boolean is_validated;
 
     @ManyToOne
-    @JoinColumn(name = "id_centre")
+    @JoinColumn(name = "id_centre", foreignKey = @jakarta.persistence.ForeignKey(name = "fk_id_centre"))
     private centres centre;
 
     @ManyToOne
-    @JoinColumn(name = "id_patient", nullable = false)
+    @JoinColumn(name = "id_patient", foreignKey = @jakarta.persistence.ForeignKey(name = "fk_id_patient"))
     private patient patient;
 
     @ManyToOne
-    @JoinColumn(name = "id_employe", nullable = false)
+    @JoinColumn(name = "id_employe")
     private employes employe;
 
-    public reservations(int id_patient, int id_centre, Boolean is_validated, LocalDate jour, String creneau) {
-        this.id_patient = id_patient;
-        this.id_centre = id_centre;
+    public reservations(patient patient, centres centre, employes medecin, Boolean is_validated, LocalDate jour, String creneau) {
+        this.patient = patient;
+        this.centre = centre;
+        this.employe = medecin;
         this.is_validated = is_validated;
         this.jour = jour;
         this.creneau = creneau;
@@ -52,18 +48,31 @@ public class reservations {
     public void setId(int id) {
         this.id = id;
     }
-    public int getId_patient() {
-        return id_patient;
+    
+
+    public patient getPatient(){
+        return this.patient;
     }
-    public void setId_patient(int id_patient) {
-        this.id_patient = id_patient;
+    public void setPatient(patient patient) {
+        this.patient = patient;
     }
-    public int getId_centre() {
-        return id_centre;
+
+    public centres getCentre(){
+        return this.centre;
     }
-    public void setId_centre(int id_centre) {
-        this.id_centre = id_centre;
+
+    public void setCentre(centres centre){
+        this.centre = centre;
     }
+
+    public employes getemploye(){
+        return this.employe;
+    }
+
+    public void setEmploye(employes medecin){
+        this.employe = medecin;
+    }
+  
     public LocalDate getJour() {
         return jour;
     }
@@ -83,12 +92,6 @@ public class reservations {
     public void setIs_validated(Boolean is_validated) {
         this.is_validated = is_validated;
     }
-    public int getId_employe() {
-        return id_employe;
-    }
 
-    public void setId_employe(int id_employe) {
-        this.id_employe = id_employe;
-    }
 
 }

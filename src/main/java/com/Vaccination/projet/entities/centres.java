@@ -1,8 +1,10 @@
-package com.Vaccination.entities;
+package com.Vaccination.projet.entities;
 
 import jakarta.persistence.Table;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -22,11 +24,15 @@ public class centres {
     private String ville;
    
     @OneToMany(mappedBy = "centre", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<employes> employes;
 
     @OneToMany(mappedBy = "centre", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<reservations> reservations;
 
+    public centres(){
+
+    }
 
     public centres( String nom, String ville) {
         this.nom = nom;
@@ -50,5 +56,13 @@ public class centres {
     }
     public void setVille(String ville) {
         this.ville = ville;
+    }
+
+    public List<employes> getEmployes(){
+        return this.employes;
+    }
+
+    public List<reservations> gReservations(){
+        return this.reservations;
     }
 }

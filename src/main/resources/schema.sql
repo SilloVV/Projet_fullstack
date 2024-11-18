@@ -1,34 +1,39 @@
-create table t_centres (
+create table if not exists t_centres  (
     id int4 not null,
     ville varchar(255),
     nom varchar(255),
     primary key (id)
 );
 
-create table t_employes(
+create table if not exists t_employes(
     id int4 not null, 
     nom varchar(255),
     prenom varchar(255),
-    foreign key (id_centre) references t_centres(id),
+    id_centre int4,
     is_med boolean, 
     is_admin boolean, 
     is_super_admin boolean,
     telephone varchar(15),
-    primary key (id)
-)
+    primary key (id),
+    foreign key (id_centre) references t_centres(id)
+);
 
-create table t_reservations(
+create table if not exists t_reservations (
     id int4 not null, 
-    foreign key(id_patient) references t_employes(id),
-    foreign key(id_centre) references t_centres(id),
+    id_patient int4,
+    id_centre int4,
+    id_employe int4,
     jour date, 
     creneau time, 
     is_validated boolean,
-    primary key(id)
+    primary key(id),
+    foreign key(id_patient) references t_employes(id),
+    foreign key(id_centre) references t_centres(id), 
+    foreign key(id_employe) references t_employes(id)
     
-)
+);
 
-create table t_patients(
+create table if not exists t_patients (
     id int4 not null, 
     nom varchar(255),
     prenom varchar(255),
@@ -37,6 +42,9 @@ create table t_patients(
     date_naissance date,
     primary key(id)
 
-)
+);
+
+ALTER TABLE t_reservations ADD COLUMN id_employe BIGINT;
+
 
 
