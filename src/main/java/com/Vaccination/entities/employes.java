@@ -13,6 +13,8 @@ public class employes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String nom;
     private String prenom;
+
+    
     private int id_centre;
     private String role;
     private int telephone;
